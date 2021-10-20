@@ -1,4 +1,4 @@
-___PLAYLIST__
+___PLAYLIST___
 
 --Une fonction pour afficher les playlists présentes dans la bdd--
  method : GET
@@ -18,15 +18,15 @@ ___PLAYLIST__
         {
             "id_playlist1" : "int",
             "playlist_name" : "Str",
-            ["id_track1" : "int",
-            "id_track2" : "int"]
+            "tracks" : ["id_track1" : "int",
+                        "id_track2" : "int"]
         }
         {
             "id_playlist2" : "int",
             "playlist_name" : "Str",
-            "id_track1" : "int",
-            ["id_track2" : "int"
-            "id_track3" : "int"]
+            "tracks" : ["id_track1" : "int",
+                        "id_track2" : "int"
+                        "id_track3" : "int"]
         }
 
 --Une fonction pour créer une playlist--
@@ -37,8 +37,8 @@ ___PLAYLIST__
 
 	inscrire dans postman {
                             name_playlist = "Str" ,
-                            [id_track1 =  "int",
-                            id_track2 = "int"] }
+                            "tracks" : [id_track1 =  "int",
+                                        id_track2 = "int"] }
 
     body {
         si playlist est bien créé {
@@ -52,8 +52,8 @@ ___PLAYLIST__
         {
             "playlist_id" : "int",
             "playlist_name" : "Str",
-            ["id_track1" = "int" ,
-            "id_track2" = "int"]
+            "tracks" : ["id_track1" = "int" ,
+                        "id_track2" = "int"]
         }
 
 --Une fonction pour modifier une playlist--
@@ -63,8 +63,8 @@ ___PLAYLIST__
     params : id_playlist
 
 	inscrire dans postman {name_playlist = "Str" ,
-                            [id_track1 =  "int",
-                            id_track2 = "int"] }
+                            "tracks" : [id_track1 =  "int",
+                                        id_track2 = "int"] }
 
     body {
         modifier "name" où utilisateur.id == "id"
@@ -79,8 +79,8 @@ ___PLAYLIST__
         {
             "id_playlist" : "int",
             "name_playlist" : "Str",
-            ["id_track1" : "int",
-            "id_track2" : "int"]
+            "tracks" : ["id_track1" : "int",
+                        "id_track2" : "int"]
         }
 
 --effacer une playlist--
