@@ -1,29 +1,231 @@
-list musique from playlist
-    method : GET
-    route : tracks/
+___PLAYLIST__
 
-    params : playlist link
+--Une fonction pour afficher les playlists présentes dans la bdd--
+ method : GET
+    route : playlists/
+
+    params : aucun
 
     body {
-        if the link isn't correct {
-            400 bad request
-        } elif {
-            return :
-                'tracks_list': [
-                    {
-                    'track_name': 'Raspoutine',
-                    'track_singer': 'Ziak',
-                    'track_album': 'Raspoutine',
-                    'duration': '1:58',
-                    'ERROR': None
-                    },
-                    {
-                    'track_name': 'Raspoutine',
-                    'track_singer': 'Ziak',
-                    'track_album': 'Raspoutine', 
-                    'duration': '1:58',
-                    'ERROR': None
-                    }
-                ]
+        si liste vide {
+            200 "nombre de ressource retouné 0"
+        } else {
+            "nombre de ressources retournées {list.length}"
         }
     }
+
+    return :
+        {
+            "id_playlist1" : "int",
+            "playlist_name" : "Str",
+            "id_track1" : "int",
+            "id_track2" : "int"
+        }
+        {
+            "id_playlist2" : "int",
+            "playlist_name" : "Str",
+            "id_track1" : "int",
+            "id_track2" : "int"
+            "id_track3" : "int"
+        }
+
+--Une fonction pour créer une playlist--
+    method : POST
+    route : playlist/{id_playlist}
+
+    params : id_playlist
+
+	inscrire dans postman {
+                            name_playlist = "Str" ,
+                            id_track1 =  "int",
+                            id_track2 = "int" }
+
+    body {
+        si playlist est bien créé {
+            201
+        } else {
+            err message
+        }
+    }
+
+    return :
+        {
+            "playlist_id" : "int",
+            "playlist_name" : "Str",
+            "id_track1" = "int" ,
+            "id_track2" = "int"
+        }
+
+--Une fonction pour modifier une playlist--
+    method : PUT
+    route : playlist/id_playlist
+
+    params : id_playlist
+
+	inscrire dans postman {name_playlist = "Str" ,
+                            id_track1 =  "int",
+                            id_track2 = "int" }
+
+    body {
+        modifier "name" où utilisateur.id == "id"
+        si utilisateur est bien modifier {
+            202
+        } else {
+            304
+        }
+    }
+
+    return :
+        {
+            "id_playlist" : "int",
+            "name_playlist" : "Str",
+            "id_track1" : "int",
+            "id_track2" : "int"
+        }
+
+--effacer une playlist--
+    method : DELETE
+    route : playlist/id_playlist
+
+    params : id_playlist
+
+    body {
+        supprime playlist où playlist.id = "id"
+        si playlist est bien supprimée {
+            204
+        } else {
+            404
+        }
+    }
+
+    return : 204
+
+///--fonction pour récupérer une playlist Spotify via l'entrée utilisateur sous forme d'arg et l'afficher--
+	method : GET
+	route : playlist/{url_spotify}
+
+	params: url_spotify
+
+	body {
+        si playlist est bien trouvée {
+            204
+///        } else {
+            404
+        }
+
+    return :
+        {
+            "track_name" : "Str",
+            "track_singer" : "Str",
+            "track_album" : "Str",
+            "Duration" : "int"
+///        }
+
+
+__TRACK__
+
+
+--Une fonction pour créer un son--
+    method : POST
+    route : tracks/{id_tracks}
+
+	inscrire dans postman { id_playlist = ... ,
+	                        name_track = ... ,
+                            singer_track = ... ,
+                            duration_track = ... }
+
+    params : id_tracks
+
+    body {
+        si son est bien créé {
+            201
+        } else {
+            err message
+        }
+    }
+
+    return :
+        {
+            "track_name" : "Str",
+            "track_singer" : "Str",
+            "track_album" : "Str",
+            "Duration" : "int"
+        }
+
+
+
+--Une fonction pour afficher les sons présents dans une playlist--
+ method : GET
+    route : playlists/id_playlist/tracks
+
+    params : id_playlist
+
+    body {
+        si playlist vide {
+            200 "nombre de ressource retouné 0"
+        } else {
+            "nombre de ressources retournées {list.length}"
+        }
+    }
+
+    return :
+        {
+            "track_name" : "Str",
+            "track_singer" : "Str",
+            "track_album" : "Str",
+            "Duration" : "int"
+        }
+	{
+            "track_name" : "Str",
+            "track_singer" : "Str",
+            "track_album" : "Str",
+            "Duration" : "int"
+        }
+
+
+--Une fonction pour modifier un son--
+    method : PUT
+    route : tracks/id_track
+
+	inscrire dans postman {
+                            name_track = ... ,
+                            singer_track = ... ,
+                            duration_track = ... }
+
+    params : id_track
+
+    body {
+        modifier "name" où utilisateur.id == "id"
+        si utilisateur est bien modifier {
+            202
+        } else {
+            304
+        }
+    }
+
+    return :
+        {
+            "track_name" : "Str",
+            "track_singer" : "Str",
+            "track_album" : "Str",
+            "Duration" : "int"
+        }
+
+----effacer un son--
+    method : DELETE
+    route : tracks/id_track
+
+    params : id_track
+
+    body {
+        supprime playlist où playlist.id = "id"
+        si playlist est bien supprimée {
+            204
+        } else {
+            404
+        }
+    }
+
+    return : 204
+
+
