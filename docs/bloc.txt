@@ -1,0 +1,29 @@
+list musique from playlist
+    method : GET
+    route : tracks/
+
+    params : playlist link
+
+    body {
+        if the link isn't correct {
+            400 bad request
+        } elif {
+            return :
+                'tracks_list': [
+                    {
+                    'track_name': 'Raspoutine',
+                    'track_singer': 'Ziak',
+                    'track_album': 'Raspoutine',
+                    'duration': '1:58',
+                    'ERROR': None
+                    },
+                    {
+                    'track_name': 'Raspoutine',
+                    'track_singer': 'Ziak',
+                    'track_album': 'Raspoutine', 
+                    'duration': '1:58',
+                    'ERROR': None
+                    }
+                ]
+        }
+    }

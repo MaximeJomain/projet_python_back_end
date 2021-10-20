@@ -1,7 +1,9 @@
-# This is a sample Python script.
+from SpotifyScraper.scraper import Request, Scraper
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+request = Request().request()
+scraper = Scraper(session=request)
+playlist_information = scraper.get_playlist_url_info(url="https://open.spotify.com/playlist/6mZs5jRMpKF31qGSVpI3LF?si=752abcf27f504e0a")
+print(playlist_information)
 
 
 def print_hi(name):
