@@ -1,18 +1,22 @@
-from SpotifyScraper.scraper import Request, Scraper
+from flask import Flask
+import pymongo
 
-request = Request().request()
-scraper = Scraper(session=request)
-playlist_information = scraper.get_playlist_url_info(url="https://open.spotify.com/playlist/6mZs5jRMpKF31qGSVpI3LF?si=752abcf27f504e0a")
-print(playlist_information)
+app = Flask(__name__)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+def main():
+    client = pymongo.MongoClient(
+        "mongodb+srv://coding:bad123@cluster0.jmgfz.mongodb.net/spotify_db?retryWrites=true&w=majority")
+    db = client.test
+    collection = db.collection0
+    for i in range(1, 11):
+        playlist = {
+            "_id": i,
+            "playlist_name": f"Playlist_name {i}",
+        }
+        playlist_id = collection.insert_one(playlist).inserted_id
+        print(f"Inserted {playlist_id}: {playlist}")
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()
