@@ -11,10 +11,10 @@ def delete_playlist(name):
     playlist_list = db.playlists.find({})
     if request.method == "DELETE":
         name = escape(name)
-        collection = db.playlists
         for playlist in playlist_list:
             print(playlist["name"])
             if playlist["name"] == name:
-                return f"delete {name}"
+                collection = db.playlists
                 collection.delete_one({'name': name})
+                return f"delete {name}"
         return "this playlist doesn't exist"
