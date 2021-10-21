@@ -1,10 +1,10 @@
 from flask import Flask
-from functions.connect_db import connect_db
-from functions.create_playlist import create_playlist
-
-import pymongo
+from functions.create_playlist import app_create_playlist
 
 app = Flask(__name__)
+app.register_blueprint(app_create_playlist)
 
-if __name__ == "__main__":
-    create_playlist(connect_db(), "kebab")
+
+@app.route('/')
+def main():
+    return "in main"
