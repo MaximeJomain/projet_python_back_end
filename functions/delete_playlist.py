@@ -5,9 +5,14 @@ from functions.connect_db import connect_db
 app_delete_playlist = Blueprint('app_delete_playlist', __name__)
 
 
-@app_delete_playlist.route("/delete/<name>", methods=['DELETE'])
+@app_delete_playlist.route("/playlist/remove/<name>", methods=['DELETE'])
 def delete_playlist(name):
-    db = connect_db()
+    """this function delete a playlist from database
+
+    :param name: the name of the playlist we want to delete
+    :return: a status message
+    """
+    db = connect_db()  # The connection to database
     playlist_list = db.playlists.find({})
     if request.method == "DELETE":
         name = escape(name)
