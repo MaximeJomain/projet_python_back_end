@@ -21,4 +21,4 @@ def delete_playlist(name):
                 collection = db.playlists
                 collection.delete_one({'name': name})
                 return f"delete {name}"
-        return "this playlist doesn't exist"
+        return "err 404 this playlist doesn't exist"
