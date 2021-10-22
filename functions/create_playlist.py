@@ -9,23 +9,22 @@ def create_playlist(id):
     """ Function to create a new playlist
     :rtype: String
     :param id: id of the playlist you want to create
-    :return: display in console the playlist you created or a error message
+    :return: displays in console the playlist you created or displays a error message
     """
-    if request.method == 'POST':
-        playlist = {
-            "_id": int(id),
-            "playlist_name": request.get_json()['playlist_name'],
-            "track_list": request.get_json()['track_list']
-        }
 
-        id_exists = False
-        for i in connect_db().playlists.find({}, {"_id": 1}):
-            if i["_id"] == int(id):
-                id_exists = True
+    playlist = {
+        "_id": int(id),
+        "playlist_name": request.get_json()['playlist_name'],
+        "track_list": request.get_json()['track_list']
+    }
 
-        if id_exists:
-            return "The playlist ID already exist"
+    id_exists = False
+    for i in connect_db().playlists.find({}, {"_id": 1}):
+        if i["_id"] == int(id):
+            id_exists = True
 
-        else:
-            playlist_id = connect_db().playlists.insert_one(playlist).inserted_id
-            return f"Inserted {playlist_id}: {playlist}"
+    if id_exists:
+        return "The playlist ID already exist"
+
+    else:
+        return f"Inserted playlist #{connect_db().playlists.insert_one(playlist).inserted_id}"
