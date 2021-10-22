@@ -17,7 +17,6 @@ def delete_playlist(name):
     if request.method == "DELETE":
         name = escape(name)
         for playlist in playlist_list:
-            print(playlist["name"])
             if playlist["name"] == name:
                 collection = db.playlists
                 collection.delete_one({'name': name})
