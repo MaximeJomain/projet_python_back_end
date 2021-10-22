@@ -12,23 +12,20 @@ def create_playlist(id):
     :return: display in console the playlist you created or a error message
     """
     if request.method == 'POST':
-        request_data = request.get_json()
-        request_id = int(id)
-        name = request_data['name']
-        db = connect_db()
-        collection = db.playlists
         playlist = {
-            "_id": request_id,
-            "name": name
+            "_id": int(id),
+            "playlist_name": request.get_json()['playlist_name'],
+            "track_list": request.get_json()['track_list']
         }
+
         id_exists = False
-        for i in collection.find({}, {"_id": 1}):
-            if i["_id"] == request_id:
+        for i in connect_db().playlists.find({}, {"_id": 1}):
+            if i["_id"] == int(id):
                 id_exists = True
 
         if id_exists:
             return "The playlist ID already exist"
 
         else:
-            playlist_id = collection.insert_one(playlist).inserted_id
+            playlist_id = connect_db().playlists.insert_one(playlist).inserted_id
             return f"Inserted {playlist_id}: {playlist}"
