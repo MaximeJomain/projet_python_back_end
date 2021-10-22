@@ -27,4 +27,4 @@ def create_playlist(id):
         return "The playlist ID already exist"
 
     else:
-        return f"Inserted playlist #{connect_db().playlists.insert_one(playlist).inserted_id}"
+        return f"Status 201 Inserted playlist #{connect_db().playlists.insert_one(playlist).inserted_id}"
