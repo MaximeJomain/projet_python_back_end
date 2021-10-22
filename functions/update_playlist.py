@@ -23,6 +23,5 @@ def update_playlist(id):
         for playlist in playlist_list:
             if (playlist["_id"]) == playlist_id:
                 collection.update_one({"_id": playlist_id}, {"$set": {"playlist_name": name}})
-                # playlist.update({"$set": {"playlist_name": name}})
-                return "ok"
-        return "sorti de la boucle"
+                return "status 200"
+        return "status 304"
