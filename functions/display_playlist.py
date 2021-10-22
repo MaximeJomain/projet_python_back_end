@@ -16,5 +16,7 @@ def display_playlist():
 
     for i in collection.find():
         result.append(f"Playlist {i['_id']} = {i['playlist_name']}")
-
-    return f"{result}"
+    if len(result) == 0 :
+        return "status 200 : nombre de ressource retouné 0"
+    else:
+        return f"nombre de ressources retournées {len(result)} {result}"
