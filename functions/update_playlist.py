@@ -13,18 +13,16 @@ def update_playlist(id):
     """
 
     request_data = request.get_json()
-    name = request_data['name']
+    name = request_data['playlist_name']
     db = connect_db()
-    playlist_list = db.playlists.find({})
     collection = db.playlists
+    playlist_list = db.playlists.find({}, {"_id": 1})
+    playlist_id = int(id)
+
     if request.method == "PATCH":
-        playlist_id = str(escape(id))
         for playlist in playlist_list:
-            print(playlist["_id"])
-            print(playlist_id)
-            if str(playlist["_id"]) == playlist_id:
-                print(playlist)
-                collection.update_one({"_id": playlist_id}, {"$set": {"name": name}})
-                playlist.update({"$set": {"name": name}})
-                return playlist
+            if (playlist["_id"]) == playlist_id:
+                collection.update_one({"_id": playlist_id}, {"$set": {"playlist_name": name}})
+                # playlist.update({"$set": {"playlist_name": name}})
+                return "ok"
         return "sorti de la boucle"
