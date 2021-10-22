@@ -11,7 +11,10 @@ def display_playlist():
     :return: list of all playlists
     """
     db = connect_db()
-    collection = db.collection0
+    collection = db.playlists
+    result = []
 
     for i in collection.find():
-        return f"{i}"
+        result.append(f"Playlist {i['_id']} = {i['playlist_name']}")
+
+    return f"{result}"
